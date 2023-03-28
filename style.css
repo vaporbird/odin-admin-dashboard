@@ -23,7 +23,9 @@ body{
 
 .nav-placeholder{
     height: 100%;
-    flex: 0 0 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 300px;
 }
 
 .navigation{
@@ -88,10 +90,9 @@ body{
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-template-columns: minmax(350px,1fr) repeat(auto-fit, minmax(350px,1fr));
     grid-auto-rows: 1fr;
     gap: 20px;
-    margin-bottom: 20px;
     align-content: stretch;
     flex:1;
 }
@@ -100,6 +101,18 @@ body{
     border:none;
     border-radius: 8px;
     border-left: 8px solid orange;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; 
+}
+
+.card > div {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+.card > span {
+    color: #5f5f5f;
 }
 
 .card:nth-child(odd){
@@ -114,14 +127,16 @@ body{
     display: flex;
     flex-direction: column;
     flex:1;
+    margin-bottom: 20px;
 }
 
 .right {
     display: grid;
     grid-auto-flow: row;
-    width: 300px;
+    width: clamp(200px,25%,300px);
     gap: 20px;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 
@@ -142,13 +157,13 @@ body{
     border-bottom: 1px solid gray;
 }
 
-.card {
-   padding: 1rem; 
-}
-
-.trender {
-    margin-left: 1rem;
-    margin-right: 1rem;
+.trender{
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+    grid-template-columns: 1fr 2fr;
+/*     margin-left: 1rem;
+    margin-right: 1rem; */
 }
 
 .announcement:last-child {
@@ -156,7 +171,11 @@ body{
 }
 
 .trender:last-child {
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.trender:first-child {
+    padding-top: 0.5rem;
 }
 
 .header {
@@ -260,4 +279,36 @@ button {
 }
 .col-flex > span:last-child{
     font-size: 1.25rem;
+}
+
+.trender > img {
+    width: 6rem;
+}
+
+@media (max-width: 1350px) {
+
+    .navigation > div > a > span, .navigation > h1 > a > span {
+        display: none;
+    }
+
+    .navigation, .nav-placeholder {
+        width: 100px;
+    }
+
+    .logo-small {
+        height: 2rem;
+    }
+
+    .logo-big {
+        margin-left: 0.667rem;
+    }
+    
+}
+
+@media (max-width: 1180px)
+{
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    }
+
 }
